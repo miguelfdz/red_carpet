@@ -32,9 +32,18 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+#Simple Form aims to be as flexible as possible while helping you with powerful components to create your forms
+gem 'simple_form'
+#Haml-rails provides Haml generators for Rails 5.
+gem "haml-rails", "~> 2.0"
+#Bootstrap 4 ruby gem for Ruby on Rails (Sprockets) and Hanami (formerly Lotus).
+gem 'bootstrap', '~> 5.0.0.beta2'
+#This is a JSON implementation as a Ruby extension in C.
+gem 'json', '~> 1.8', '>= 1.8.3'
+#A simple HTTP and REST client for Ruby, inspired by the Sinatra microframework style of specifying actions: get, put, post, delete.
+gem 'rest-client', '~> 2.0.1'
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

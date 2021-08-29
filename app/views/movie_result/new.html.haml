@@ -1,0 +1,29 @@
+- require 'json'
+
+%h1.mb-4
+  RedCarpet
+
+= simple_form_for(@movie_result, url: movie_result_index_path(@movie_result), :validation => true) do |f|
+  .col-md-9.col-xs-12
+    .row.mb-2
+      .col-sm-8
+        = f.input :movie_title, label: "Buscar Pelicula o serie"
+  .btn.btn-primary
+    = f.submit "Buscar", class: "btn btn-primary"
+
+- if params[:json]
+  %table.px-2{:border => 1}
+    %tbody
+      %tr
+        %td Poster
+        %td Title
+        %td Synopsis
+        %td Rank
+      - media_critic_result = params[:json]["data"]["media_critic_result"]
+      %tr
+        %td
+          %img{src: media_critic_result["poster"]}
+        %td=media_critic_result["title"]
+        %td=media_critic_result["synopsis"]
+        %td=media_critic_result["rank"]
+    %br
