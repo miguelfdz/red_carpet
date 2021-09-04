@@ -11,19 +11,24 @@ module MovieResults
           "Content-Type": "application/json",
           Accept: "application/json"
         },
-        url: "https://wrapapi.com/use/miguelfdz/metacritic_api/metacritic_movies/0.0.1",
+        url: "https://wrapapi.com/use/miguelfdz/metacritic_api/metacritic_movies/0.0.7",
         payload: {
           movie_title: movie_title,
-          wrapAPIKey: "1RpZy0eQGTZgSaJArpszYkJ0CIMrvqLS"
+          wrapAPIKey: "Vl1614u6tlwKpaJYjcuPEkXFdslYRVvX"
         }.to_json
       )
 
       ret = JSON.parse(result)
     end
+  end
+
+  module RottenTomatoesApi
+    def self.scrap(movie_title)
+    end
 
     def movie_title_conversion(movie_title)
       if movie_title.match(" ")
-        movie_title.split(' ').join('%20')
+        movie_title.split(' ').join('_')
       else
         movie_title
       end

@@ -16,14 +16,12 @@
     %tbody
       %tr
         %td Poster
-        %td Title
         %td Synopsis
         %td Rank
-      - media_critic_result = params[:json]["data"]["media_critic_result"]
+      - meta_critic_result = params[:json][:data][:meta_critic_result]
       %tr
         %td
-          %img{src: media_critic_result["poster"]}
-        %td=media_critic_result["title"]
-        %td=media_critic_result["synopsis"]
-        %td=media_critic_result["rank"]
+          %img{src: meta_critic_result[:poster]}
+        %td=meta_critic_result[:synopsis]
+        %td=meta_critic_result[:rank]
     %br
