@@ -11,17 +11,51 @@
   .btn.btn-primary
     = f.submit "Buscar", class: "btn btn-primary"
 
-- if params[:json]
+- if params[:json_meta]
   %table.px-2{:border => 1}
     %tbody
       %tr
-        %td Poster
+        %td MetaCritic
         %td Synopsis
         %td Rank
-      - meta_critic_result = params[:json][:data][:meta_critic_result]
+      - meta_critic_result = params[:json_meta][:data][:meta_critic_result]
       %tr
         %td
           %img{src: meta_critic_result[:poster]}
         %td=meta_critic_result[:synopsis]
         %td=meta_critic_result[:rank]
     %br
+
+  %table.px-2{:border => 1}
+    %tbody
+      %tr
+        %td RottenTomatoes
+        %td Synopsis
+        %td Review Links 
+        %td Ratings Links
+      - rotten_tomatoes_scores = params[:json_rotten][:data][:score_board]
+      - rotten_tomatoes_synopsis = params[:json_rotten][:data][:synopsis]
+      %tr
+        %td
+          %img{src: meta_critic_result[:poster]}
+        %td=rotten_tomatoes_synopsis
+        %td
+          %a{href: "https://www.rottentomatoes.com#{rotten_tomatoes_scores[:reviews_links]}", target: "_blank"}
+            Review link
+        %td
+          %a{href: "https://www.rottentomatoes.com#{rotten_tomatoes_scores[:ratings_link]}", target: "_blank"}
+            Rating link
+    %br
+
+  %table.px-2{:border => 1}
+    %tbody
+      %tr
+        %td MetaCritic
+        %td Synopsis
+        %td Rank
+      - meta_critic_result = params[:json_meta][:data][:meta_critic_result]
+      %tr
+        %td
+          %img{src: meta_critic_result[:poster]}
+        %td=meta_critic_result[:synopsis]
+        %td=meta_critic_result[:rank]
