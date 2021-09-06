@@ -26,6 +26,7 @@
         %td=meta_critic_result[:rank]
     %br
 
+- if params[:json_rotten]
   %table.px-2{:border => 1}
     %tbody
       %tr
@@ -37,7 +38,7 @@
       - rotten_tomatoes_synopsis = params[:json_rotten][:synopsis]
       %tr
         %td
-          %img{src: meta_critic_result[:poster]}
+
         %td=rotten_tomatoes_synopsis
         %td
           %a{href: "https://www.rottentomatoes.com#{rotten_tomatoes_scores[:reviews_links]}", target: "_blank"}
@@ -47,6 +48,7 @@
             Rating link
     %br
 
+- if params[:json_imdb]
   %table.px-2{:border => 1}
     %tbody
       %tr
@@ -56,7 +58,7 @@
       - imdb_result = params[:json_imdb]
       %tr
         %td
-          %img{src: meta_critic_result[:poster]}
+
         %td=imdb_result[:user]
         %td=imdb_result[:output]
     %br
