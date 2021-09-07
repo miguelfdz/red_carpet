@@ -1,64 +1,61 @@
 - require 'json'
 
-%h1.mb-4
-  RedCarpet
-
-= simple_form_for(@movie_result, url: movie_result_index_path(@movie_result), :validation => true) do |f|
-  .col-md-9.col-xs-12
-    .row.mb-2
-      .col-sm-8
-        = f.input :movie_title, label: "Buscar Pelicula o serie"
-  .btn.btn-primary
-    = f.submit "Buscar", class: "btn btn-primary"
+%div.wrapper.text-center
+  %h1.mb-4.mt-4
+    RedCarpet
+%div
+  = simple_form_for(@movie_result, url: movie_result_index_path(@movie_result), :validation => true) do |f|
+    .d-flex.flex-row.justify-content-center
+      %div.p-2
+        = f.input :movie_title, placeholder: "Find movie title", label: false, class: "pb-3 pt-3"
 
 - if params[:json_meta]
-  %table.px-2{:border => 1}
-    %tbody
-      %tr
-        %td MetaCritic
-        %td Synopsis
-        %td Rank
-      - meta_critic_result = params[:json_meta]
-      %tr
-        %td
-          %img{src: meta_critic_result[:poster]}
-        %td=meta_critic_result[:synopsis]
-        %td=meta_critic_result[:rank]
-    %br
+  %div.wrapper.text-center.mt-4.mb-4
+    - meta_critic_result = params[:json_meta]
+    %img{src: meta_critic_result[:poster], style: "width: 10%; height: auto;"}
 
-- if params[:json_rotten]
-  %table.px-2{:border => 1}
-    %tbody
-      %tr
-        %td RottenTomatoes
-        %td Synopsis
-        %td Review Links 
-        %td Ratings Links
-      - rotten_tomatoes_scores = params[:json_rotten][:score_board]
-      - rotten_tomatoes_synopsis = params[:json_rotten][:synopsis]
-      %tr
-        %td
+.d-flex.justify-content-around.mb-5
+  - if params[:json_meta]
+    %div.wrapper.text-center.container.border.rounded.mx-3
+      .h2
+        Metacritic
+      .h5.mb-3
+        ="Rank: #{meta_critic_result[:rank]}"
+      .div
+        =meta_critic_result[:synopsis]
 
-        %td=rotten_tomatoes_synopsis
-        %td
+  - if params[:json_rotten]
+    - rotten_tomatoes_scores = params[:json_rotten][:score_board]
+    - rotten_tomatoes_synopsis = params[:json_rotten][:synopsis]
+    %div.wrapper.text-center.container.border.rounded.mx-3
+      .h2
+        Rotten Tomatoes
+      .d-flex.justify-content-around.mb-3
+        %div
           %a{href: "https://www.rottentomatoes.com#{rotten_tomatoes_scores[:reviews_links]}", target: "_blank"}
             Review link
-        %td
+        %div
           %a{href: "https://www.rottentomatoes.com#{rotten_tomatoes_scores[:ratings_link]}", target: "_blank"}
             Rating link
-    %br
+      %div
+        =rotten_tomatoes_synopsis
 
-- if params[:json_imdb]
-  %table.px-2{:border => 1}
-    %tbody
-      %tr
-        %td IMDB
-        %td Userscore
-        %td Metascore
-      - imdb_result = params[:json_imdb]
-      %tr
-        %td
-
-        %td=imdb_result[:user]
-        %td=imdb_result[:output]
-    %br
+  - if params[:json_imdb]
+    - imdb_result = params[:json_imdb]
+    %div.wrapper.text-center.container.border.rounded.mx-3
+      .h2
+        IMDB
+      .d-flex.justify-content-around.mb-3
+        %div
+          Userscore
+          %br
+            =imdb_result[:user]
+        %div
+          Metascore
+          %br
+            =imdb_result[:output].split('Metascore').join('')
+      %div
+        - if meta_critic_result[:synopsis].present?
+          =meta_critic_result[:synopsis]
+        - else
+          =rotten_tomatoes_synopsis

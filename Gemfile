@@ -36,8 +36,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'simple_form'
 #Haml-rails provides Haml generators for Rails 5.
 gem "haml-rails", "~> 2.0"
-#Bootstrap 4 ruby gem for Ruby on Rails (Sprockets) and Hanami (formerly Lotus).
-gem 'bootstrap', '~> 5.0.0.beta2'
+#Bootstrap 5 ruby gem for Ruby on Rails (Sprockets) and Hanami (formerly Lotus).
+gem 'bootstrap', '~> 5.1.0'
 #This is a JSON implementation as a Ruby extension in C.
 gem 'json', '~> 1.8', '>= 1.8.3'
 #A simple HTTP and REST client for Ruby, inspired by the Sinatra microframework style of specifying actions: get, put, post, delete.
