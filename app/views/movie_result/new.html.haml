@@ -3,11 +3,10 @@
 %div.wrapper.text-center
   %h1.mb-4.mt-4
     RedCarpet
-%div
-  = simple_form_for(@movie_result, url: movie_result_index_path(@movie_result), :validation => true) do |f|
-    .d-flex.flex-row.justify-content-center
-      %div.p-2
-        = f.input :movie_title, placeholder: "Find movie title", label: false, class: "pb-3 pt-3"
+  %div
+    = simple_form_for(@movie_result, url: movie_result_index_path(@movie_result), :validation => true) do |f|
+      %div.p-2.mb-4
+        = f.input :movie_title, placeholder: "Find movie title", label: false, input_html: {size: 80}
 
 - if params[:json_meta]
   %div.wrapper.text-center.mt-4.mb-4
@@ -55,7 +54,7 @@
           %br
             =imdb_result[:output].split('Metascore').join('')
       %div
-        - if meta_critic_result[:synopsis].present?
+        - if meta_critic_result.present?
           =meta_critic_result[:synopsis]
         - else
           =rotten_tomatoes_synopsis
